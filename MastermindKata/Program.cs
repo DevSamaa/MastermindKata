@@ -8,6 +8,9 @@ namespace MastermindKata
         {
             Console.WriteLine("Hello World!");
             //this is going to be the mastermind kata
+
+            var mastermind = new Mastermind();
+            mastermind.Run();
         }
     }
 }

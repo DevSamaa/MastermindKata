@@ -14,3 +14,5 @@ namespace MastermindKata
         }
     }
 }
+
+//TODO find out when to use _minValue vs MinValue, including the const/readonly suggestions
