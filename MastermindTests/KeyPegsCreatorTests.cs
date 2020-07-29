@@ -11,14 +11,14 @@ namespace MastermindTests
         //TODo maybe take this one out later.
         //TODO find out why these tests are passing despite the fact that you're comparing a list to an array
         [Fact]
-        public void GenerateReturnArrayShouldReturnExpectedArrayOld()
+        public void GenerateShouldReturnExpectedArrayOld()
         {
             var codePegs = new string[] {"Red", "Blue", "Green", "Purple"};
             var userPegs = new string[] {"Yellow", "Blue", "Yellow", "Red"};
             var keyPegsCreator =new KeyPegsCreator();
             var expectedResult = new string[] {"Black", "White"};
 
-            var actualResult =keyPegsCreator.GenerateReturnArray(codePegs,userPegs);
+            var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
             
             Assert.Equal(expectedResult, actualResult);
         }
@@ -38,12 +38,12 @@ namespace MastermindTests
         
         [Theory]
         [MemberData(nameof(InputData))]
-        public void GenerateReturnArrayShouldReturnExpectedArrays(string[] userPegs, string[] expectedResult)
+        public void GenerateShouldReturnExpectedArrays(string[] userPegs, string[] expectedResult)
         {
             var codePegs = new string[] {"Red", "Blue", "Green", "Purple"};
             var keyPegsCreator =new KeyPegsCreator();
 
-            var actualResult =keyPegsCreator.GenerateReturnArray(codePegs,userPegs);
+            var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
             
             Assert.Equal(expectedResult, actualResult);
         }
@@ -56,7 +56,7 @@ namespace MastermindTests
             // var expectedResult = new string[] {};
 
             var keyPegsCreator =new KeyPegsCreator();
-            var actualResult =keyPegsCreator.GenerateReturnArray(codePegs,userPegs);
+            var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
             
             //TODO find out which one of these is "better": IsNullOrEmpty(), or compare to expectedResult!?
             // Assert.Equal(expectedResult, actualResult);
