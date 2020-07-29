@@ -24,7 +24,7 @@ namespace MastermindTests
         [Fact]
         public void UserPegsShouldBeEditable()
         {
-            //TODO check to see if it's ok to do the "testCodePegs" this way
+            //TODO check to see if it's ok to do the "testCodePegs" this way.
             var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
             var decodingBoard = new DecodingBoard(testCodePegs);
 
