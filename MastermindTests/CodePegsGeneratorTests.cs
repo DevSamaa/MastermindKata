@@ -12,7 +12,7 @@ namespace MastermindTests
         public void TheGenerateMethodShouldReturnAnArrayWith4YellowStrings()
         {
             var mockRandomNumber = Substitute.For<IRandomNumberGenerator>();
-            mockRandomNumber.Generate().Returns(5);
+            mockRandomNumber.Generate().Returns(5); //will return yellow
             var codePegsGenerator = new CodePegsGenerator(mockRandomNumber);
             
             var result =codePegsGenerator.Generate();

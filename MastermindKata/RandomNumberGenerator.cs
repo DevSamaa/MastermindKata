@@ -16,3 +16,6 @@ namespace MastermindKata
 }
 
 //TODO find out when to use _minValue vs MinValue, including the const/readonly suggestions
+
+//const is for int, string-->             const int MaxValue
+//readonly is used where const can't be --> readonly int _maxValue

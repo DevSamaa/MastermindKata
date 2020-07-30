@@ -4,7 +4,7 @@ namespace MastermindKata
     public class CodePegsGenerator
     {
         private readonly IRandomNumberGenerator _randomNumberGenerator;
-        private readonly string[] PossibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
+        private readonly string[] _possibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
 
         public CodePegsGenerator(IRandomNumberGenerator randomNumberGenerator)
         {
@@ -16,8 +16,7 @@ namespace MastermindKata
             var codePegs = new string[4];
             for (int i = 0; i < 4; i++)
             {
-               
-                codePegs[i] = PossibleColors[_randomNumberGenerator.Generate()];
+                codePegs[i] = _possibleColors[_randomNumberGenerator.Generate()];
             }
 
             return codePegs;

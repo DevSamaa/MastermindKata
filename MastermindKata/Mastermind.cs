@@ -13,6 +13,7 @@ namespace MastermindKata
             //Part 2 get the user input + increment tries
             var currentUserGuess = new string[] {"Red", "Red", "Red", "Red"};
             decodingBoard.UserPegs = currentUserGuess;
+            decodingBoard.Tries++;
 
             //Part 3 check if any answers are correct + feedback to user
             //at this point you will have an array of 4 strings from the user, it's been saved into the decodingBoard.UserPegs
