@@ -17,6 +17,8 @@ namespace MastermindTests
             Assert.Contains("Blue", result);
             Assert.Contains("Green", result);
             Assert.Contains("Purple", result);
+            
+            //TODO maybe compare to an array
         }
         
         

@@ -7,6 +7,7 @@ namespace MastermindTests
 {
     public class DecodingBoardTests
     {
+        //TODO maybe move this test to the MastermindTests (integartion test)
         [Fact]
         public void ADecodingBoardShouldHaveSpecifiedCodePegs()
         {

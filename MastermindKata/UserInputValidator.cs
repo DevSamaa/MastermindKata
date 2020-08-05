@@ -4,6 +4,8 @@ namespace MastermindKata
 {
     public class UserInputValidator
     {
+        // "red,blue,yellow,orange"
+        
         //1 should put incoming string into an array, separeated by commas
         public string[] PutUserGuessIntoArray(string userGuess)
         {
@@ -25,6 +27,7 @@ namespace MastermindKata
 
         public bool ColorNamesAreCorrect(string[] userGuessArray)
         {
+            //look into using enums maybe?!
             var possibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
             
             foreach (var guess in userGuessArray)
@@ -36,7 +39,6 @@ namespace MastermindKata
                 }
             }
             return true;
-//TODO should I really convert it into a LINQ statement? I find it less readable.
         }
     }
 }

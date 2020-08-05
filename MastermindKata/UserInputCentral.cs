@@ -4,10 +4,27 @@ namespace MastermindKata
 {
     public class UserInputCentral
     {
-        public void Run()
+        public string[] Run()
         {
-            PromptTheUser("please insert your guess");
-            var userGuess = GetUserGuess();
+            var userInputValidator = new UserInputValidator();
+            string[] answer;
+            while (true)
+            {
+                PromptTheUser("please insert your guess");
+                var userGuess = GetUserGuess();
+                var userGuessArray =userInputValidator.PutUserGuessIntoArray(userGuess);
+                //if no errors move on to next part --> write code for this
+
+                    var validatedLength = userInputValidator.ArrayLengthIsCorrect(userGuessArray);
+                    if (!validatedLength) continue;
+                    var validatedColors = userInputValidator.ColorNamesAreCorrect(userGuessArray);
+                    if (!validatedColors) continue;
+                    answer= userGuessArray; 
+                    break;
+
+            }
+
+            return answer;
         }
         
         //a method that displays a message to the user
@@ -28,42 +45,3 @@ namespace MastermindKata
     }
 }
 
-// public string UserSelection()
-// {
-// while (true)
-// {
-//     var savedUserInput = UserPrompt();
-//
-//     var isValid = ValidateInput(savedUserInput);
-//
-//     if (isValid)
-//     {
-//         return savedUserInput;
-//     }
-//     else
-//     {
-//         Console.WriteLine("That is not a valid selection. Please try again.");
-//     }
-// }
-//
-// }
-//
-//
-// private string UserPrompt()
-// {
-// Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-// return Console.ReadLine();
-// }
-//
-//
-// public bool ValidateInput(string incomingString)
-// {
-// if (incomingString == "1" || incomingString == "0")
-// {
-//     return true;
-// }
-// else
-// {
-//     return false;
-// }
-// }

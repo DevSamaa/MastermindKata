@@ -22,7 +22,12 @@ namespace MastermindTests
                 yield return new object[] { 
                     new string[] {"Red", "Blue", "Green", "Purple"},
                     new string[] {"Black", "Black", "Black", "Black"} };
+                yield return new object[] { 
+                    new string[] {"Red", "Orange", "Blue", "Blue"},
+                    new string[] {"Black", "White"} };
             }
+        
+       
         
         [Theory]
         [MemberData(nameof(InputData))]
@@ -31,7 +36,7 @@ namespace MastermindTests
             var codePegs = new string[] {"Red", "Blue", "Green", "Purple"};
             var keyPegsCreator =new KeyPegsCreator();
 
-            var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
+            var actualResult =keyPegsCreator.Generate2(codePegs,userPegs);
             
             Assert.Equal(expectedResult, actualResult);
         }
