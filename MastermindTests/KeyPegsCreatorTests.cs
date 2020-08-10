@@ -36,7 +36,7 @@ namespace MastermindTests
             var codePegs = new string[] {"Red", "Blue", "Green", "Purple"};
             var keyPegsCreator =new KeyPegsCreator();
 
-            var actualResult =keyPegsCreator.Generate2(codePegs,userPegs);
+            var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
             
             Assert.Equal(expectedResult, actualResult);
         }

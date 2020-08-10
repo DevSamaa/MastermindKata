@@ -24,7 +24,6 @@ namespace MastermindKata
             {
                 //Part 2 get the user input + increment tries
                 var userInputCentral = new UserInputCentral();
-                //TODO change this later
                 var currentUserGuess =userInputCentral.GetValidUserInput();
                 //TODO, figure out of a UpdateTheBoardMethod would be useful.
                 decodingBoard.UserPegs = currentUserGuess;

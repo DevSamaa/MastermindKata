@@ -37,14 +37,11 @@ namespace MastermindKata
         //3 should check that color names are correct
         public bool ColorNamesAreCorrect(string[] userGuessArray)
         {
-            // var possibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
-            
+            //TODO check if something like the line below oculd work
+           // var test = PossibleColors.Colors.Contains<>(userGuessArray);
             foreach (var guess in userGuessArray)
             {
-                // var tempResult = possibleColors.Contains(guess);
-               
                 var tempResult = PossibleColors.Colors.Contains(guess);
-
                 if (tempResult == false)
                 {
                     return false;

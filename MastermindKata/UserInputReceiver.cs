@@ -7,7 +7,7 @@ namespace MastermindKata
 
         public string[] ReceiveUserInput()
         {
-            PromptTheUser("please insert your guess");
+            PromptTheUser("Please type in your 4 guesses, separated by a comma");
             var userGuess = GetUserGuess();
             var userGuessInArray = PutUserGuessIntoArray(userGuess);
             return userGuessInArray;
