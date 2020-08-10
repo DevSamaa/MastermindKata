@@ -4,43 +4,59 @@ namespace MastermindKata
 {
     public class UserInputCentral
     {
-        public string[] Run()
+        // public string[] GetValidUserInput()
+        // {
+        //     var userInputReceiver = new UserInputReceiver();
+        //     var userInputValidator = new UserInputValidator();
+        //     string[] answer;
+        //     
+        //     while (true)
+        //     {
+        //         var userGuess = userInputReceiver.ReceiveUserInput();
+        //
+        //         var lengthIsValid = userInputValidator.ArrayLengthIsCorrect(userGuess);
+        //         if (lengthIsValid == false)
+        //         {
+        //             Console.WriteLine("You seem to not have entered 4 colors. Or you forgot to put a comma , between them.");
+        //             continue;
+        //         }
+        //         var colorsAreValid = userInputValidator.ColorNamesAreCorrect(userGuess);
+        //             if (colorsAreValid == false)
+        //             {
+        //                 Console.WriteLine("That color doesn't exist");
+        //                 continue;
+        //             }
+        //         answer= userGuess; 
+        //         break;
+        //     }
+        //     return answer;
+        // }
+        
+        public string[] GetValidUserInput()
         {
+            var userInputReceiver = new UserInputReceiver();
             var userInputValidator = new UserInputValidator();
             string[] answer;
+            
             while (true)
             {
-                PromptTheUser("please insert your guess");
-                var userGuess = GetUserGuess();
-                var userGuessArray =userInputValidator.PutUserGuessIntoArray(userGuess);
-                //if no errors move on to next part --> write code for this
-
-                    var validatedLength = userInputValidator.ArrayLengthIsCorrect(userGuessArray);
-                    if (!validatedLength) continue;
-                    var validatedColors = userInputValidator.ColorNamesAreCorrect(userGuessArray);
-                    if (!validatedColors) continue;
-                    answer= userGuessArray; 
-                    break;
-
+                var userGuess = userInputReceiver.ReceiveUserInput();
+                var everythingIsValid = userInputValidator.EverythingIsValid(userGuess);
+                
+                if (!everythingIsValid)
+                {
+                    Console.WriteLine(userInputValidator.ErrorMessage);
+                   continue; 
+                }
+                answer= userGuess; 
+                break;
             }
-
             return answer;
         }
+
         
-        //a method that displays a message to the user
-        public void PromptTheUser(string message)
-        {
-            Console.WriteLine(message);
-        }
-        //a method that gets the user guess
-        public string GetUserGuess()
-        {
-            return Console.ReadLine();
-        }
         
-        // a/ seeral methods that verify the string
         
-        //return out the verified string to mastermind
         
     }
 }

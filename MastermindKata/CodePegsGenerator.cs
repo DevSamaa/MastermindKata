@@ -1,10 +1,12 @@
+using System;
+
 namespace MastermindKata
 {
     //should generate the CodePegs that will then be used on the Decoding Board
     public class CodePegsGenerator
     {
         private readonly IRandomNumberGenerator _randomNumberGenerator;
-        private readonly string[] _possibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
+        // private readonly string[] _possibleColors = new[] {"Red", "Blue", "Green", "Orange", "Purple", "Yellow"};
 
         public CodePegsGenerator(IRandomNumberGenerator randomNumberGenerator)
         {
@@ -13,15 +15,38 @@ namespace MastermindKata
 
         public string[] Generate()
         {
-            var codePegs = new string[4];
-            for (int i = 0; i < 4; i++)
-            {
-                codePegs[i] = _possibleColors[_randomNumberGenerator.Generate()];
-            }
-
-            return codePegs;
+        var codePegs = new string[4];
+        for (int i = 0; i < 4; i++)
+        {
+            // codePegs[i] = _possibleColors[_randomNumberGenerator.Generate()];
+            codePegs[i] = PossibleColors.Colors[_randomNumberGenerator.Generate()];
+        }
+        
+        return codePegs;
 
         }
+
+        // public PossibleColors[] Generate2()
+        // {
+        //     var codePegs = new PossibleColors[4];
+        //     for (int i = 0; i < 4; i++)
+        //     {
+        //         codePegs[i] = (PossibleColors) _randomNumberGenerator.Generate();
+        //     }
+        //
+        //     return codePegs;
+        // }
+        
+        // public string[] Generate3()
+        // {
+        //     var codePegs = new string [4];
+        //     for (int i = 0; i < 4; i++)
+        //     {
+        //         codePegs[i] = ((PossibleColors) _randomNumberGenerator.Generate()).ToString();
+        //     }
+        //
+        //     return codePegs;
+        // }
     }
 }
 

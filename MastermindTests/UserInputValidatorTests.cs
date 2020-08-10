@@ -7,19 +7,7 @@ namespace MastermindTests
 {
     public class UserInputValidatorTests
     {
-        [Fact]
-        public void PutUserGuessIntoArrayShouldReturnArrayOfStrings()
-        {
-            var inputValidator = new UserInputValidator();
-            var result = inputValidator.PutUserGuessIntoArray("Red,Blue,Green,Purple");
-
-            Assert.Contains("Red", result);
-            Assert.Contains("Blue", result);
-            Assert.Contains("Green", result);
-            Assert.Contains("Purple", result);
-            
-            //TODO maybe compare to an array
-        }
+        
         
         
         
