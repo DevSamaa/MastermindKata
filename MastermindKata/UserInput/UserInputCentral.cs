@@ -13,7 +13,7 @@ namespace MastermindKata
             while (true)
             {
                 var userGuess = userInputReceiver.ReceiveUserInput();
-                var everythingIsValid = userInputValidator.EverythingIsValid(userGuess);
+                var everythingIsValid = userInputValidator.InputIsValid(userGuess);
                 
                 if (!everythingIsValid)
                 {

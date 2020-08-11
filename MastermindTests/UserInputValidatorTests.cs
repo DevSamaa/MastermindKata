@@ -8,9 +8,6 @@ namespace MastermindTests
     public class UserInputValidatorTests
     {
         
-        
-        
-        
         public static IEnumerable<object[]> ArrayLengthData()
         {
             yield return new object[]
@@ -46,7 +43,7 @@ namespace MastermindTests
         {
             yield return new object[]
             {
-                new string[] {"Yellow", "Blue", "Yellow", "Red"},
+                new string[] {"yellow", "blue", "yellow", "red"},
                 true
             };
             yield return new object[]
@@ -56,7 +53,7 @@ namespace MastermindTests
             };
             yield return new object[]
             {
-                new string[] {"Purple", "Purple"},
+                new string[] {"purple", "purple"},
                 true
             };
         }

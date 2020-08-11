@@ -7,7 +7,7 @@ namespace MastermindKata
     {
         public string ErrorMessage { get; private set; }
         
-        public bool EverythingIsValid(string[] userGuess)
+        public bool InputIsValid(string[] userGuess)
         {
             var lengthIsValid = ArrayLengthIsCorrect(userGuess);
             if (!lengthIsValid)

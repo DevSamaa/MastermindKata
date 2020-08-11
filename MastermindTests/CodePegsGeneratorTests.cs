@@ -16,7 +16,7 @@ namespace MastermindTests
             var codePegsGenerator = new CodePegsGenerator(mockRandomNumber);
             
             var result =codePegsGenerator.Generate();
-            var allStringsAreYellow = result.All(strings => strings.Equals("Yellow"));
+            var allStringsAreYellow = result.All(strings => strings.Equals("yellow"));
             
             Assert.Equal(4,result.Length);
             Assert.True(allStringsAreYellow);
