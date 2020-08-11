@@ -5,7 +5,7 @@ namespace MastermindKata
     public class RandomNumberGenerator: IRandomNumberGenerator
     {
         private const int MinValue = 0;
-        private readonly int _maxValue = PossibleColors.Colors.Length;
+        private readonly int _maxValue = PossibleColors.Options.Length;
 
         public int Generate()
         {

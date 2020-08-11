@@ -41,7 +41,7 @@ namespace MastermindKata
            // var test = PossibleColors.Colors.Contains<>(userGuessArray);
             foreach (var guess in userGuessArray)
             {
-                var tempResult = PossibleColors.Colors.Contains(guess);
+                var tempResult = PossibleColors.Options.Contains(guess);
                 if (tempResult == false)
                 {
                     return false;

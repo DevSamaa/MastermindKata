@@ -16,7 +16,7 @@ namespace MastermindKata
             var codePegs = new string[4];
             for (int i = 0; i < 4; i++)
             {
-                codePegs[i] = PossibleColors.Colors[_randomNumberGenerator.Generate()];
+                codePegs[i] = PossibleColors.Options[_randomNumberGenerator.Generate()];
             }
             return codePegs;
         }

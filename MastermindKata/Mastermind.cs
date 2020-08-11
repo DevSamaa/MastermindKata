@@ -6,53 +6,61 @@ namespace MastermindKata
 {
     public class Mastermind
     {
-        public void Run()
+        public void Play()
         {
             //Part 1 set up the decoding board
             var randomNumberGenerator = new RandomNumberGenerator();
             var codePegs = new CodePegsGenerator(randomNumberGenerator).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
-            
-            //delete this later
-            Console.WriteLine($"The correct answer is:");
-            foreach (var peg in decodingBoard.CodePegs)
-            {
-                Console.WriteLine($"[{peg}]");
-            }
 
-            while (true)
+            var welcomeMessage = new WelcomeMessage();
+            welcomeMessage.Print();
+            
+            while (decodingBoard.Tries < 61)
             {
                 //Part 2 get the user input + increment tries
                 var userInputCentral = new UserInputCentral();
                 var currentUserGuess =userInputCentral.GetValidUserInput();
-                //TODO, figure out of a UpdateTheBoardMethod would be useful.
-                decodingBoard.UserPegs = currentUserGuess;
-                decodingBoard.Tries++;
+                decodingBoard.UpdateUserPegs(currentUserGuess);
 
                 //Part 3 check if any answers are correct + feedback to user
                 var keyPegsCreator = new KeyPegsCreator();
                 var currentKeyPegs = keyPegsCreator.Generate(decodingBoard.CodePegs, decodingBoard.UserPegs);
-                decodingBoard.KeyPegs = currentKeyPegs;
+                decodingBoard.UpdateKeyPegs(currentKeyPegs);
+                decodingBoard.PrintKeyPegs();
 
-                foreach (var peg in decodingBoard.KeyPegs)
+                // Part 4 check if game needs to end
+                var winnerFinder = new WinnerFinder();
+                var userHasWon =winnerFinder.UserHasWon(decodingBoard);
+                if (userHasWon)
                 {
-                    Console.WriteLine($"[{peg}]");
+                    Console.WriteLine("Congratulations. You Win");
+                    break;
                 }
 
-                //TODO think of a better way to do this
-                if (decodingBoard.KeyPegs.Count ==4)
+                if (decodingBoard.Tries ==60)
                 {
-                    var allBlack = decodingBoard.KeyPegs.All(peg => peg.Equals("Black"));
-                    if (allBlack)
-                    {
-                        Console.WriteLine("You Win");
-                        break;
-                    }
+                    Console.WriteLine("You've had 60 tries. Game Over.");
                 }
-                
             }
-
-            //Part 4 end game if right conditions met (60 tries, or all black array)
         }
     }
 }
+
+//delete this later
+// Console.WriteLine($"The correct answer is:");
+// foreach (var peg in decodingBoard.CodePegs)
+// {
+//     Console.WriteLine($"[{peg}]");
+// }
+
+//TODO think of a better way to do this
+// if (decodingBoard.KeyPegs.Count ==4)
+// {
+//     var allBlack = decodingBoard.KeyPegs.All(peg => peg.Equals("Black"));
+//     if (allBlack)
+//     {
+//         Console.WriteLine("Congratulations. You Win");
+//         break;
+//     }
+// }

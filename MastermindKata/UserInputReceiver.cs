@@ -7,7 +7,7 @@ namespace MastermindKata
 
         public string[] ReceiveUserInput()
         {
-            PromptTheUser("Please type in your 4 guesses, separated by a comma");
+            PromptTheUser("\nPlease type in your 4 guesses, separated by a comma");
             var userGuess = GetUserGuess();
             var userGuessInArray = PutUserGuessIntoArray(userGuess);
             return userGuessInArray;
@@ -20,11 +20,11 @@ namespace MastermindKata
         
         private string GetUserGuess()
         {
-            return Console.ReadLine();
+            var input= Console.ReadLine();
+            return input.ToLower();
+            //Find out if it's better to do this in a different method
         }
         
-        //TODO maybe move this into a UserInputProcessor class and add a method that does .ToUpper for first and ToLower for remaining letters
-        //1 should put incoming string into an array, separated by commas
         public string[] PutUserGuessIntoArray(string userGuess)
         {
             string[] splitString = userGuess.Split(',');

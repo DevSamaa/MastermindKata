@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using MastermindKata;
 using NSubstitute;
@@ -16,7 +17,7 @@ namespace MastermindTests
             var codePegs = new CodePegsGenerator(mockRandomNumber).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
 
-            var expectedResult = new[] {"Yellow", "Blue", "Orange", "Green"};
+            var expectedResult = new[] {"yellow", "blue", "orange", "green"};
 
             var actualResult = decodingBoard.CodePegs;
             Assert.Equal(expectedResult, actualResult);
@@ -31,6 +32,30 @@ namespace MastermindTests
             Assert.True(string.IsNullOrEmpty(decodingBoard.UserPegs[0]));
             decodingBoard.UserPegs[0] = "ThisIsTheNewString";
             Assert.True(decodingBoard.UserPegs[0] == "ThisIsTheNewString");
+        }
+
+        [Fact]
+        public void UpdateUserPegsShouldWorkAndIncrementTries()
+        {
+            var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
+            var decodingBoard = new DecodingBoard(testCodePegs);
+            
+            Assert.True(decodingBoard.Tries ==0);
+            decodingBoard.UpdateUserPegs(testCodePegs);
+            Assert.True(decodingBoard.Tries ==1);
+            Assert.True(decodingBoard.UserPegs == testCodePegs);
+        }
+        
+        [Fact]
+        public void UpdateKeyPegsShouldWork()
+        {
+            var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
+            var decodingBoard = new DecodingBoard(testCodePegs);
+            var testKeyPegs = new List<string>(){"Black","Black","White","White"};
+            
+            Assert.True(decodingBoard.KeyPegs.Count==0);
+            decodingBoard.UpdateKeyPegs(testKeyPegs);
+            Assert.Equal(testKeyPegs, decodingBoard.KeyPegs);
         }
     }
 }
