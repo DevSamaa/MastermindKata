@@ -53,8 +53,10 @@ namespace MastermindTests
             var decodingBoard = new DecodingBoard(testCodePegs);
             var testKeyPegs = new List<string>(){"Black","Black","White","White"};
             
+            //TODO think about changing this to Assert.Equal rather than Assert.True
             Assert.True(decodingBoard.KeyPegs.Count==0);
             decodingBoard.UpdateKeyPegs(testKeyPegs);
+            Assert.True(decodingBoard.KeyPegs.Count==4);
             Assert.Equal(testKeyPegs, decodingBoard.KeyPegs);
         }
     }

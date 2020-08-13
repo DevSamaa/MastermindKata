@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MastermindKata
 {
-    public class UserInputValidator
+    public class InputValidator
     {
         public string ErrorMessage { get; private set; }
         

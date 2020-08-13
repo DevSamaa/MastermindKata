@@ -2,9 +2,9 @@ using System;
 
 namespace MastermindKata
 {
-    public class WelcomeMessage
+    public class PrintedMessages
     {
-        public void Print()
+        public void WelcomeUser()
         {
             Console.WriteLine("Welcome to Mastermind\n");
             Console.WriteLine("The game master was expecting you. The decoding board has already been set up.\n");
@@ -14,6 +14,15 @@ namespace MastermindKata
             Console.WriteLine("For every guess that is the right color in the right spot, you will receive a black peg, for every guess that is the right color in the wrong spot you will receive a white peg. For all incorrect guesses you won't receive anything.");
             Console.WriteLine("Let's begin...");
         }
-        
+
+        public void UserWins()
+        {
+            Console.WriteLine("Congratulations. You Win");
+        }
+
+        public void UserLoses()
+        {
+            Console.WriteLine("You've had 60 tries. Game Over.");
+        }
     }
 }

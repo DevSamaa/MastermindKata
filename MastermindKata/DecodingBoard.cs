@@ -35,6 +35,8 @@ namespace MastermindKata
             {
                 Console.Write($"[{peg}]");
             }
+
+            Console.WriteLine("");
         }
     }
 

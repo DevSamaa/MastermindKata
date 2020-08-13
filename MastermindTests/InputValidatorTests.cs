@@ -5,7 +5,7 @@ using Xunit;
 
 namespace MastermindTests
 {
-    public class UserInputValidatorTests
+    public class InputValidatorTests
     {
         
         public static IEnumerable<object[]> ArrayLengthData()
@@ -31,7 +31,7 @@ namespace MastermindTests
         [MemberData(nameof(ArrayLengthData))]
         public void ArrayLengthIsCorrectShouldReturnTrueWhen4ItemsPresent(string[] incomingArray, bool expectedResult)
         {
-            var inputValidator = new UserInputValidator();
+            var inputValidator = new InputValidator();
 
             var actualResult = inputValidator.ArrayLengthIsCorrect(incomingArray);
             
@@ -62,7 +62,7 @@ namespace MastermindTests
         [MemberData(nameof(ColorNamesData))]
         public void ColorNamesAreCorrectReturnsTrueWhenRightNamesAreUsed(string[] userGuessArray, bool expectedResult)
         {
-            var inputValidator = new UserInputValidator();
+            var inputValidator = new InputValidator();
 
             var actualResult = inputValidator.ColorNamesAreCorrect(userGuessArray);
             

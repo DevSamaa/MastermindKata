@@ -7,18 +7,18 @@ namespace MastermindKata
     {
         public List<string> Generate(string[] codePegs, string[] userPegs)
         {
-            var codePegsNew = codePegs.ToList();
-            var userPegsNew = userPegs.ToList();
+            var codePegsCopy = codePegs.ToList();
+            var userPegsCopy = userPegs.ToList();
             var keyPegs= new List<string>();
             
             //get black pegs
-            for (int i = 0; i < userPegsNew.Count;)
+            for (int i = 0; i < userPegsCopy.Count;)
             {
-                if (userPegsNew[i] == codePegsNew[i])
+                if (userPegsCopy[i] == codePegsCopy[i])
                 {
                     keyPegs.Add("Black");
-                    userPegsNew.RemoveAt(i);
-                    codePegsNew.RemoveAt(i);
+                    userPegsCopy.RemoveAt(i);
+                    codePegsCopy.RemoveAt(i);
                 }
                 else
                 {
@@ -27,13 +27,13 @@ namespace MastermindKata
             }
 
             //get white pegs
-            for (int i = 0; i < userPegsNew.Count;)
+            for (int i = 0; i < userPegsCopy.Count;)
             {
-                if (codePegsNew.Contains(userPegsNew[i]))
+                if (codePegsCopy.Contains(userPegsCopy[i]))
                 {
                     keyPegs.Add("White");
-                    codePegsNew.Remove(userPegsNew[i]);
-                    userPegsNew.RemoveAt(i);
+                    codePegsCopy.Remove(userPegsCopy[i]);
+                    userPegsCopy.RemoveAt(i);
                 }
                 else
                 {

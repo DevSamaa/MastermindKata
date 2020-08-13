@@ -6,41 +6,51 @@ namespace MastermindKata
 {
     public class Mastermind
     {
+        private readonly IRandomNumberGenerator _randomNumberGenerator;
+        private readonly InputCentral _inputCentral;
+        private readonly KeyPegsCreator _keyPegsCreator;
+        private readonly WinnerFinder _winnerFinder;
+        private readonly PrintedMessages _printedMessages;
+        public Mastermind()
+        {
+            _randomNumberGenerator = new RandomNumberGenerator();
+            _inputCentral = new InputCentral();
+            _keyPegsCreator = new KeyPegsCreator();
+            _winnerFinder = new WinnerFinder();
+            _printedMessages = new PrintedMessages();
+        }
+        private int _maximumTries = 60;
         public void Play()
         {
             //Part 1 set up the decoding board
-            var randomNumberGenerator = new RandomNumberGenerator();
-            var codePegs = new CodePegsGenerator(randomNumberGenerator).Generate();
+            var codePegs = new CodePegsGenerator(_randomNumberGenerator).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
 
-            var welcomeMessage = new WelcomeMessage();
-            welcomeMessage.Print();
+            // var printedMessages = new PrintedMessages();
+            _printedMessages.WelcomeUser();
             
-            while (decodingBoard.Tries < 61)
+            while (decodingBoard.Tries < _maximumTries+1)
             {
                 //Part 2 get the user input + increment tries
-                var userInputCentral = new UserInputCentral();
-                var currentUserGuess =userInputCentral.GetValidUserInput();
+                var currentUserGuess = _inputCentral.GetValidUserInput();
                 decodingBoard.UpdateUserPegs(currentUserGuess);
 
                 //Part 3 check if any answers are correct + feedback to user
-                var keyPegsCreator = new KeyPegsCreator();
-                var currentKeyPegs = keyPegsCreator.Generate(decodingBoard.CodePegs, decodingBoard.UserPegs);
+                var currentKeyPegs = _keyPegsCreator.Generate(decodingBoard.CodePegs, decodingBoard.UserPegs);
                 decodingBoard.UpdateKeyPegs(currentKeyPegs);
                 decodingBoard.PrintKeyPegs();
 
                 // Part 4 check if game needs to end
-                var winnerFinder = new WinnerFinder();
-                var userHasWon =winnerFinder.UserHasWon(decodingBoard);
+                var userHasWon =_winnerFinder.UserHasWon(decodingBoard);
                 if (userHasWon)
                 {
-                    Console.WriteLine("Congratulations. You Win");
+                    _printedMessages.UserWins();
                     break;
                 }
 
-                if (decodingBoard.Tries ==60)
+                if (decodingBoard.Tries == _maximumTries)
                 {
-                    Console.WriteLine("You've had 60 tries. Game Over.");
+                    _printedMessages.UserLoses();
                 }
             }
         }
@@ -52,15 +62,4 @@ namespace MastermindKata
 // foreach (var peg in decodingBoard.CodePegs)
 // {
 //     Console.WriteLine($"[{peg}]");
-// }
-
-//TODO think of a better way to do this
-// if (decodingBoard.KeyPegs.Count ==4)
-// {
-//     var allBlack = decodingBoard.KeyPegs.All(peg => peg.Equals("Black"));
-//     if (allBlack)
-//     {
-//         Console.WriteLine("Congratulations. You Win");
-//         break;
-//     }
 // }
