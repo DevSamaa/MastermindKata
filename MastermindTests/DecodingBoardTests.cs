@@ -8,18 +8,21 @@ namespace MastermindTests
 {
     public class DecodingBoardTests
     {
-        //TODO maybe move this test to the MastermindTests (integartion test)
+        //TODO maybe move this test to the MastermindTests --really!??
         [Fact]
+        [Trait("Category","Integration")]
+
         public void ADecodingBoardShouldHaveSpecifiedCodePegs()
         {
             var mockRandomNumber = Substitute.For<IRandomNumberGenerator>();
             mockRandomNumber.Generate().Returns(5,1,3,2);
+            
             var codePegs = new CodePegsGenerator(mockRandomNumber).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
 
             var expectedResult = new[] {"yellow", "blue", "orange", "green"};
-
             var actualResult = decodingBoard.CodePegs;
+            
             Assert.Equal(expectedResult, actualResult);
         }
 

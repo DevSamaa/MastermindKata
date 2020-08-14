@@ -2,7 +2,7 @@ using System;
 
 namespace MastermindKata
 {
-    public class InputReceiver
+    public class InputReceiver: IInputReceiver
     {
 
         public string ReceiveUserInput()

@@ -8,19 +8,21 @@ namespace MastermindKata
     {
         private readonly IRandomNumberGenerator _randomNumberGenerator;
         private readonly InputCentral _inputCentral;
+        private readonly IInputReceiver _inputReceiver;
         private readonly KeyPegsCreator _keyPegsCreator;
         private readonly WinnerFinder _winnerFinder;
         private readonly PrintedMessages _printedMessages;
         public Mastermind()
         {
             _randomNumberGenerator = new RandomNumberGenerator();
-            _inputCentral = new InputCentral();
+            _inputReceiver = new InputReceiver();
+            _inputCentral = new InputCentral(_inputReceiver);
             _keyPegsCreator = new KeyPegsCreator();
             _winnerFinder = new WinnerFinder();
             _printedMessages = new PrintedMessages();
         }
         private int _maximumTries = 60;
-        public void Play()
+        public bool Play()
         {
             //Part 1 set up the decoding board
             var codePegs = new CodePegsGenerator(_randomNumberGenerator).Generate();
@@ -45,14 +47,20 @@ namespace MastermindKata
                 if (userHasWon)
                 {
                     _printedMessages.UserWins();
-                    break;
+                    return true;
+                    // break;
                 }
 
                 if (decodingBoard.Tries == _maximumTries)
                 {
                     _printedMessages.UserLoses();
+                    return false;
+                    // break;
                 }
             }
+
+            return false; 
+            //TODO is it ok to do this?
         }
     }
 }

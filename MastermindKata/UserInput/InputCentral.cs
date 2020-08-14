@@ -4,22 +4,30 @@ namespace MastermindKata
 {
     public class InputCentral
     {
+        private readonly IInputReceiver _inputReceiver;
+        private readonly InputProcessor _inputProcessor;
+        private readonly InputValidator _inputValidator;
+        
+        public InputCentral(IInputReceiver inputReceiver)
+        {
+             _inputReceiver = inputReceiver;
+             _inputProcessor = new InputProcessor();
+             _inputValidator = new InputValidator();
+        }
         public string[] GetValidUserInput()
         {
-            var inputReceiver = new InputReceiver();
-            var inputProcessor = new InputProcessor();
-            var inputValidator = new InputValidator();
+         
             string[] answer;
             
             while (true)
             {
-                var userInput = inputReceiver.ReceiveUserInput();
-                var processedInput = inputProcessor.ProcessInput(userInput);
-                var inputIsValid = inputValidator.InputIsValid(processedInput);
+                var userInput = _inputReceiver.ReceiveUserInput();
+                var processedInput = _inputProcessor.ProcessInput(userInput);
+                var inputIsValid = _inputValidator.InputIsValid(processedInput);
                 
                 if (!inputIsValid)
                 { 
-                    Console.WriteLine(inputValidator.ErrorMessage);
+                    Console.WriteLine(_inputValidator.ErrorMessage);
                     continue;
                 }
                 answer = processedInput; 
