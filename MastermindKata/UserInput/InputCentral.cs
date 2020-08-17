@@ -16,7 +16,6 @@ namespace MastermindKata
         }
         public string[] GetValidUserInput()
         {
-         
             string[] answer;
             
             while (true)

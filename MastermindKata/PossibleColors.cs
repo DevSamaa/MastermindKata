@@ -6,4 +6,3 @@ namespace MastermindKata
     }
 }
 
-//TODO think about why you put the array here, why not in the Decoding Board class!?

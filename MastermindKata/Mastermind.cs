@@ -21,6 +21,17 @@ namespace MastermindKata
             _winnerFinder = new WinnerFinder();
             _printedMessages = new PrintedMessages();
         }
+
+        public Mastermind(IRandomNumberGenerator randomNumberGenerator, IInputReceiver inputReceiver)
+        {
+            _randomNumberGenerator = randomNumberGenerator;
+            _inputReceiver = inputReceiver;
+            _inputCentral = new InputCentral(_inputReceiver);
+            _keyPegsCreator = new KeyPegsCreator();
+            _winnerFinder = new WinnerFinder();
+            _printedMessages = new PrintedMessages();
+        }
+        
         private int _maximumTries = 60;
         public bool Play()
         {
@@ -28,7 +39,6 @@ namespace MastermindKata
             var codePegs = new CodePegsGenerator(_randomNumberGenerator).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
 
-            // var printedMessages = new PrintedMessages();
             _printedMessages.WelcomeUser();
             
             while (decodingBoard.Tries < _maximumTries+1)
@@ -44,23 +54,24 @@ namespace MastermindKata
 
                 // Part 4 check if game needs to end
                 var userHasWon =_winnerFinder.UserHasWon(decodingBoard);
+                
+                //TODO think about separating out this bit for one round.
+                //TODO think about what the value of writing a test for Play() is? - maybe just talk about why I'm not super happy with this solution.
+                
                 if (userHasWon)
                 {
                     _printedMessages.UserWins();
                     return true;
-                    // break;
                 }
 
                 if (decodingBoard.Tries == _maximumTries)
                 {
                     _printedMessages.UserLoses();
                     return false;
-                    // break;
                 }
             }
 
             return false; 
-            //TODO is it ok to do this?
         }
     }
 }
