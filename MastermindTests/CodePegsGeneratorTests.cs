@@ -8,18 +8,22 @@ namespace MastermindTests
 {
     public class CodePegsGeneratorTests
     {
-        [Fact]
-        public void TheGenerateMethodShouldReturnAnArrayWith4YellowStrings()
+        [Theory]
+        [InlineData(0,"red")]
+        [InlineData(2,"green")]
+        [InlineData(5,"yellow")]
+
+        [Trait("Category","Unit")]
+        public void Generate_GivenASpecificNumber_ShouldReturnAnArrayWith4TimesExpectedString(int number, string expectedResult)
         {
             var mockRandomNumber = Substitute.For<IRandomNumberGenerator>();
-            mockRandomNumber.Generate().Returns(5); //will return yellow
+            mockRandomNumber.Generate().Returns(number); 
             var codePegsGenerator = new CodePegsGenerator(mockRandomNumber);
             
             var result =codePegsGenerator.Generate();
-            var allStringsAreYellow = result.All(strings => strings.Equals("yellow"));
             
             Assert.Equal(4,result.Length);
-            Assert.True(allStringsAreYellow);
+            Assert.True(result.All(strings => strings.Equals(expectedResult)));
         }
     }
 }
