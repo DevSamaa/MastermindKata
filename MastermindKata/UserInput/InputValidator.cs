@@ -25,28 +25,16 @@ namespace MastermindKata.UserInput
             return true;
         }
         
-        //2 should check that the length of the array is 4
-        public bool ArrayLengthIsCorrect(string[] userGuessArray)
+        public bool ArrayLengthIsCorrect(string[] userGuess)
         {
             const int correctLength = 4;
-            return userGuessArray.Length == correctLength;
+            return userGuess.Length == correctLength;
         }
         
         
-        //3 should check that color names are correct
-        public bool ColorNamesAreCorrect(string[] userGuessArray)
+        public bool ColorNamesAreCorrect(string[] userGuess)
         {
-            //TODO check if something like the line below oculd work
-           // var test = PossibleColors.Colors.Contains<>(userGuessArray);
-            foreach (var guess in userGuessArray)
-            {
-                var tempResult = PossibleColors.Options.Contains(guess);
-                if (tempResult == false)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return userGuess.All(color => PossibleColors.Options.Contains(color));
         }
     }
 }
