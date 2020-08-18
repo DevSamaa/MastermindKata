@@ -19,7 +19,6 @@ namespace MastermindKata
             _keyPegsCreator = new KeyPegsCreator();
             _winnerFinder = new WinnerFinder();
         }
-
         public Mastermind(IRandomNumberGenerator randomNumberGenerator, IInputReceiver inputReceiver)
         {
             _randomNumberGenerator = randomNumberGenerator;
@@ -52,7 +51,6 @@ namespace MastermindKata
                 var userHasWon =_winnerFinder.UserHasWon(decodingBoard);
                 
                 //TODO think about separating out this bit for one round.
-                //TODO think about what the value of writing a test for Play() is? - maybe just talk about why I'm not super happy with this solution.
                 
                 if (userHasWon)
                 {
@@ -66,11 +64,11 @@ namespace MastermindKata
                     return false;
                 }
             }
-
             return false; 
         }
     }
 }
+//TODO think about what the value of writing a test for Play() is? - maybe just talk about why I'm not super happy with this solution.
 
 //use for demonstration purposes
 // Console.WriteLine($"The correct answer is:");

@@ -4,26 +4,24 @@ namespace MastermindKata.UserInput
     {
         public string[] ProcessInput(string incomingString)
         { 
-            var lowerCaseString =MakeInputLowerCase(incomingString);
+            var lowerCaseString = MakeInputLowerCase(incomingString);
             var stringWithoutWhiteSpace = RemoveWhiteSpace(lowerCaseString);
-            var userGuessArray = PutUserGuessIntoArray(stringWithoutWhiteSpace);
-            return userGuessArray;
+            var userGuessInArray = PutUserGuessIntoArray(stringWithoutWhiteSpace);
+            return userGuessInArray;
         }
 
-        public string MakeInputLowerCase(string incomingString)
+        private string MakeInputLowerCase(string userInput)
         {
-            return incomingString.ToLower();
+            return userInput.ToLower();
         }
 
-        public string RemoveWhiteSpace(string incomingString)
+        public string RemoveWhiteSpace(string userInput)
         {
-           var newString = incomingString.Replace(" ", "");
-            return newString;
+          return userInput.Replace(" ", "");
         }
         public string[] PutUserGuessIntoArray(string userGuess)
         {
-            string[] splitString = userGuess.Split(',');
-            return splitString;
+            return userGuess.Split(',');
         }
     }
 }
