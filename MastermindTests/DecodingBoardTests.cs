@@ -8,11 +8,16 @@ namespace MastermindTests
 {
     public class DecodingBoardTests
     {
-        //TODO maybe move this test to the MastermindTests --really!??
+        private readonly DecodingBoard _decodingBoard;
+        public DecodingBoardTests()
+        {
+            var codePegs = new string[] { "red", "blue", "yellow", "purple"};
+            _decodingBoard = new DecodingBoard(codePegs);
+        }
+        
         [Fact]
         [Trait("Category","Integration")]
-
-        public void ADecodingBoardShouldHaveSpecifiedCodePegs()
+        public void ADecodingBoard_ShouldHaveSpecifiedCodePegs()
         {
             var mockRandomNumber = Substitute.For<IRandomNumberGenerator>();
             mockRandomNumber.Generate().Returns(5,1,3,2);
@@ -27,40 +32,44 @@ namespace MastermindTests
         }
 
         [Fact]
-        public void UserPegsShouldBeEditable()
+        [Trait("Category","Unit")]
+        public void UserPegs_ShouldBeEditable()
         {
-            var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
-            var decodingBoard = new DecodingBoard(testCodePegs);
-
-            Assert.True(string.IsNullOrEmpty(decodingBoard.UserPegs[0]));
-            decodingBoard.UserPegs[0] = "ThisIsTheNewString";
-            Assert.True(decodingBoard.UserPegs[0] == "ThisIsTheNewString");
+            Assert.True(string.IsNullOrEmpty(_decodingBoard.UserPegs[0]));
+            _decodingBoard.UserPegs[0] = "ThisIsTheNewString";
+            var expectedResult = "ThisIsTheNewString";
+            Assert.Equal(expectedResult,_decodingBoard.UserPegs[0]);
         }
 
         [Fact]
-        public void UpdateUserPegsShouldWorkAndIncrementTries()
+        [Trait("Category","Unit")]
+        public void UpdateUserPegs_ShouldWorkAndIncrementTries()
         {
-            var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
-            var decodingBoard = new DecodingBoard(testCodePegs);
+            var codePegs = new string[] { "blue", "red", "yellow", "green"};
             
-            Assert.True(decodingBoard.Tries ==0);
-            decodingBoard.UpdateUserPegs(testCodePegs);
-            Assert.True(decodingBoard.Tries ==1);
-            Assert.True(decodingBoard.UserPegs == testCodePegs);
+            var expectedResultBeforeUpdate = 0;
+            Assert.Equal(expectedResultBeforeUpdate, _decodingBoard.Tries);
+            
+            _decodingBoard.UpdateUserPegs(codePegs);
+            
+            var expectedResultAfterUpdate = 1;
+            Assert.Equal(expectedResultAfterUpdate, _decodingBoard.Tries);
+            
+            Assert.Equal(codePegs, _decodingBoard.UserPegs);
         }
         
         [Fact]
-        public void UpdateKeyPegsShouldWork()
+        [Trait("Category","Unit")]
+        public void UpdateKeyPegs_ShouldWork()
         {
-            var testCodePegs = new string[] { "Red", "Blue", "Yellow", "Purple"};
-            var decodingBoard = new DecodingBoard(testCodePegs);
-            var testKeyPegs = new List<string>(){"Black","Black","White","White"};
+            var keyPegs = new List<string>(){"Black","Black","White","White"};
             
-            //TODO think about changing this to Assert.Equal rather than Assert.True
-            Assert.True(decodingBoard.KeyPegs.Count==0);
-            decodingBoard.UpdateKeyPegs(testKeyPegs);
-            Assert.True(decodingBoard.KeyPegs.Count==4);
-            Assert.Equal(testKeyPegs, decodingBoard.KeyPegs);
+            Assert.Empty(_decodingBoard.KeyPegs);
+            _decodingBoard.UpdateKeyPegs(keyPegs);
+            
+            var expectedKeyPegsCount = 4;
+            Assert.Equal(expectedKeyPegsCount,_decodingBoard.KeyPegs.Count);
+            Assert.Equal(keyPegs, _decodingBoard.KeyPegs);
         }
     }
 }
