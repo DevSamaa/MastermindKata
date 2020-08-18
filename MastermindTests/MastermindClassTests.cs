@@ -1,4 +1,5 @@
 using MastermindKata;
+using MastermindKata.UserInput;
 using NSubstitute;
 using Xunit;
 

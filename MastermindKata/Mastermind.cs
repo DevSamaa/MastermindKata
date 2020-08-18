@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MastermindKata.UserInput;
 
 namespace MastermindKata
 {
@@ -8,28 +9,23 @@ namespace MastermindKata
     {
         private readonly IRandomNumberGenerator _randomNumberGenerator;
         private readonly InputCentral _inputCentral;
-        private readonly IInputReceiver _inputReceiver;
         private readonly KeyPegsCreator _keyPegsCreator;
         private readonly WinnerFinder _winnerFinder;
-        private readonly PrintedMessages _printedMessages;
         public Mastermind()
         {
             _randomNumberGenerator = new RandomNumberGenerator();
-            _inputReceiver = new InputReceiver();
-            _inputCentral = new InputCentral(_inputReceiver);
+            IInputReceiver inputReceiver = new InputReceiver();
+            _inputCentral = new InputCentral(inputReceiver);
             _keyPegsCreator = new KeyPegsCreator();
             _winnerFinder = new WinnerFinder();
-            _printedMessages = new PrintedMessages();
         }
 
         public Mastermind(IRandomNumberGenerator randomNumberGenerator, IInputReceiver inputReceiver)
         {
             _randomNumberGenerator = randomNumberGenerator;
-            _inputReceiver = inputReceiver;
-            _inputCentral = new InputCentral(_inputReceiver);
+            _inputCentral = new InputCentral(inputReceiver);
             _keyPegsCreator = new KeyPegsCreator();
             _winnerFinder = new WinnerFinder();
-            _printedMessages = new PrintedMessages();
         }
         
         private int _maximumTries = 60;
@@ -39,8 +35,8 @@ namespace MastermindKata
             var codePegs = new CodePegsGenerator(_randomNumberGenerator).Generate();
             var decodingBoard = new DecodingBoard(codePegs);
 
-            _printedMessages.WelcomeUser();
-            
+            MastermindMessages.WelcomeUser();
+
             while (decodingBoard.Tries < _maximumTries+1)
             {
                 //Part 2 get the user input + increment tries
@@ -60,13 +56,13 @@ namespace MastermindKata
                 
                 if (userHasWon)
                 {
-                    _printedMessages.UserWins();
+                    MastermindMessages.UserWins();
                     return true;
                 }
 
                 if (decodingBoard.Tries == _maximumTries)
                 {
-                    _printedMessages.UserLoses();
+                    MastermindMessages.UserLoses();
                     return false;
                 }
             }
@@ -76,7 +72,7 @@ namespace MastermindKata
     }
 }
 
-//delete this later
+//use for demonstration purposes
 // Console.WriteLine($"The correct answer is:");
 // foreach (var peg in decodingBoard.CodePegs)
 // {

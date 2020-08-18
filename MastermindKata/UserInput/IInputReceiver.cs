@@ -1,4 +1,4 @@
-namespace MastermindKata
+namespace MastermindKata.UserInput
 {
     public interface IInputReceiver
     {

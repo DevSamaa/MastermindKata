@@ -1,7 +1,7 @@
-using MastermindKata;
+using MastermindKata.UserInput;
 using Xunit;
 
-namespace MastermindTests
+namespace MastermindTests.UserInput
 {
     public class InputProcessorTests
     {

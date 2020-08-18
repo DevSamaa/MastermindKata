@@ -31,12 +31,18 @@ namespace MastermindKata
 
         public void PrintKeyPegs()
         {
-            foreach (var peg in KeyPegs)
+            if (KeyPegs.Count>0)
             {
-                Console.Write($"[{peg}]");
+                foreach (var peg in KeyPegs)
+                {
+                    Console.Write($"[{peg}]");
+                } 
+                Console.WriteLine("");
             }
-
-            Console.WriteLine("");
+            else
+            {
+                Console.WriteLine("Sorry, non of your guesses were correct, try again.");
+            }
         }
     }
 

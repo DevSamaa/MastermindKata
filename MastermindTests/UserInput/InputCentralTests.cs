@@ -1,8 +1,8 @@
-using MastermindKata;
+using MastermindKata.UserInput;
 using NSubstitute;
 using Xunit;
 
-namespace MastermindTests
+namespace MastermindTests.UserInput
 {
     public class InputCentralTests
     {

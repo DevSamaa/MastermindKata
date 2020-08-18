@@ -2,22 +2,22 @@ using System;
 
 namespace MastermindKata
 {
-    public class PrintedMessages
+    public static class MastermindMessages
     {
-        public void WelcomeUser()
+        public static void WelcomeUser()
         {
             Console.WriteLine("Welcome to \n");
             Console.WriteLine("  __  __           _                      _           _ \n|  \\/  |         | |                    (_)         | |\n| \\  / | __ _ ___| |_ ___ _ __ _ __ ___  _ _ __   __| |\n| |\\/| |/ _` / __| __/ _ \\ '__| '_ ` _ \\| | '_ \\ / _` |\n| |  | | (_| \\__ \\ ||  __/ |  | | | | | | | | | | (_| |\n|_|  |_|\\__,_|___/\\__\\___|_|  |_| |_| |_|_|_| |_|\\__,_|\n                                                       \n                                                       \n");
             Console.WriteLine("The game master was expecting you. The decoding board has already been set up.\n");
             Console.WriteLine("All that you have to do is guess the colors of the 4 pegs.");
             Console.WriteLine("The colors that you can chose from are: ");
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Red");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Blue");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Green");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Orange");
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Purple");
@@ -29,14 +29,16 @@ namespace MastermindKata
             Console.WriteLine("Let's begin...");
         }
 
-        public void UserWins()
+        public static void UserWins()
         {
             Console.WriteLine("Congratulations. You Win");
         }
 
-        public void UserLoses()
+        public static void UserLoses()
         {
             Console.WriteLine("You've had 60 tries. Game Over.");
         }
+        
+        
     }
 }

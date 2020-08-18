@@ -1,6 +1,6 @@
 using System;
 
-namespace MastermindKata
+namespace MastermindKata.UserInput
 {
     public class InputReceiver: IInputReceiver
     {

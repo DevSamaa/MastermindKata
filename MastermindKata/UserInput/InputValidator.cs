@@ -1,7 +1,6 @@
-using System;
 using System.Linq;
 
-namespace MastermindKata
+namespace MastermindKata.UserInput
 {
     public class InputValidator
     {
