@@ -62,19 +62,7 @@ namespace MastermindTests
             
             Assert.Equal(expectedResult, actualResult);
         }
-
-        // [Fact]
-        // public void Generate_GivenAllWrongAnswers_ShouldReturnEmptyList()
-        // {
-        //     var codePegs = new string[] {"Red", "Blue", "Green", "Purple"};
-        //     var userPegs = new string[] {"Orange", "Orange", "Orange", "Orange"};
-        //
-        //     var keyPegsCreator =new KeyPegsCreator();
-        //     var actualResult =keyPegsCreator.Generate(codePegs,userPegs);
-        //     
-        //     Assert.Empty(actualResult);
-        //     
-        // }
+        
     }
 }
 

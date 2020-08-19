@@ -43,6 +43,7 @@ namespace MastermindKata
                 if (userHasWon)
                 {
                     MastermindMessages.UserWins();
+                    break;
                 }
 
                 if (_decodingBoard.Tries == MaximumTries)
