@@ -7,7 +7,7 @@ namespace MastermindKata
         static void Main(string[] args)
         {
             var mastermind = new Mastermind();
-            mastermind.Play();
+            mastermind.Run();
         }
     }
 }
