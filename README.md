@@ -12,15 +12,14 @@ It resembles an earlier pencil and paper game called Bulls and Cows that may dat
 4. Passing an invalid colour will fail the test with the error "Error: you have given an invalid colour!"
 5. Passing an invalid array length will fail the test with the error "Error: you must pass 4 colours!"
 6. Guessing more than 60 times will fail the test with the error "Error: you have had more than 60 tries!"
-7. All colours are capitalised
-8. The return array will be shuffled!
+
 
 ## Task
 
 Your task is to create a method called mastermind() that will take an object called game. The object has already been preloaded so you do not need to worry about it.
 Within your method you must pass an array into the game object method .check(). This will evoke the object to check your array to see if it is correct.
 
-## Example walkthrough
+## Example walk through
 
 If the Mastermind selected the following colours
 
@@ -41,3 +40,10 @@ The Mastermind would then return ["Black", "White"] (But not necessarily in that
 
 Keep guessing until you pass the correct solution which will pass the Kata.
 
+
+## How to play
+1. Clone this GitHub repository.
+2. In the command line cd into the directory that contains the program.cs file.
+3. Type 'dotnet run'.
+4. Start playing by typing a guess such as 'Red, Green, Blue, Yellow'.
+5. Further instructions are to be found in the game.
