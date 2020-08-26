@@ -11,6 +11,8 @@ namespace MastermindKata
 
         public int Tries { get; private set; }
 
+        private readonly int _maxTries = 60;
+
         public DecodingBoard(string[] codePegs)
         {
            CodePegs = codePegs;
@@ -44,6 +46,12 @@ namespace MastermindKata
                 Console.WriteLine("Sorry, non of your guesses were correct, try again.");
             }
         }
+
+        public bool MaximumTriesReached()
+        {
+            return Tries == _maxTries;
+        }
+        
     }
 
     

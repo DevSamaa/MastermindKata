@@ -31,26 +31,26 @@ namespace MastermindKata
             _decodingBoard = new DecodingBoard(codePegs);
         }
 
-        private const int MaximumTries = 60;
         public void Run()
         {
             MastermindMessages.WelcomeUser();
-            
-            while (_decodingBoard.Tries < MaximumTries+1)
+
+            do
             {
                 var userHasWon = PlayARound();
-                
+
                 if (userHasWon)
                 {
                     MastermindMessages.UserWins();
                     break;
                 }
 
-                if (_decodingBoard.Tries == MaximumTries)
+                if (_decodingBoard.MaximumTriesReached())
                 {
                     MastermindMessages.UserLoses();
+                    break;
                 }
-            }
+            } while (_decodingBoard.MaximumTriesReached());
         }
 
         public bool PlayARound()
@@ -67,9 +67,10 @@ namespace MastermindKata
     }
 }
 
+
 //use for demonstration purposes
 // Console.WriteLine($"The correct answer is:");
-// foreach (var peg in decodingBoard.CodePegs)
+// foreach (var peg in _decodingBoard.CodePegs)
 // {
-//     Console.WriteLine($"[{peg}]");
+// Console.WriteLine($"[{peg}]");
 // }
